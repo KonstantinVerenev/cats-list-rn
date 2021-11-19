@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import CatsList from '../components/CatsList';
 import SearchInput from '../components/SearchInput';
@@ -26,6 +26,8 @@ const MainScreen: React.FC = () => {
   );
 };
 
+export default MainScreen;
+
 const styles = StyleSheet.create({
   container: {},
   catsList: {
@@ -35,5 +37,3 @@ const styles = StyleSheet.create({
     height: '5%',
   },
 });
-
-export default MainScreen;
