@@ -6,8 +6,8 @@ import MainScreen from './src/screens/MainScreen';
 const App: React.FC = () => {
   return (
     <SafeAreaView>
-      {/* <MainScreen /> */}
-      <DetailScreen />
+      <MainScreen />
+      {/* <DetailScreen /> */}
     </SafeAreaView>
   );
 };

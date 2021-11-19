@@ -12,7 +12,9 @@ const MainScreen: React.FC = () => {
     setCatsData(Cats);
   }, []);
 
-  const filtredCatsData = catsData.filter((item) => item.name.includes(searchQuery));
+  const filtredCatsData = catsData.filter((item) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   return (
     <View style={styles.container}>
