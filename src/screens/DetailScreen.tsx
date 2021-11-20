@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { NavigationFunctionComponent } from 'react-native-navigation';
 import { Cats } from '../data/CatsData';
 
@@ -14,15 +15,17 @@ const DetailScreen: NavigationFunctionComponent<DetailScreenProps> = (props) => 
 
   return (
     <View style={styles.itemContainer}>
-      <Image
-        style={styles.catImage}
-        source={{
-          uri: selectedCat?.img,
-        }}
-      />
-      <Text style={styles.textItem}>Порода: {selectedCat?.breed}</Text>
-      <Text style={styles.textItem}>Возраст: {selectedCat?.age}</Text>
-      <Text style={styles.itemDesc}>{selectedCat?.description}</Text>
+      <LinearGradient colors={['#CED46A', '#07553B']} style={styles.linearGradient}>
+        <Image
+          style={styles.catImage}
+          source={{
+            uri: selectedCat?.img,
+          }}
+        />
+        <Text style={styles.textItem}>Порода: {selectedCat?.breed}</Text>
+        <Text style={styles.textItem}>Возраст: {selectedCat?.age}</Text>
+        <Text style={styles.itemDesc}>{selectedCat?.description}</Text>
+      </LinearGradient>
     </View>
   );
 };
@@ -49,10 +52,14 @@ export default DetailScreen;
 
 const styles = StyleSheet.create({
   itemContainer: {
+    flex: 1,
     height: '100%',
-    padding: 10,
-    alignItems: 'center',
     backgroundColor: '#CED46A',
+  },
+  linearGradient: {
+    flex: 1,
+    alignItems: 'center',
+    width: '100%',
   },
   catImage: {
     width: '95%',
