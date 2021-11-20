@@ -30,15 +30,17 @@ const DetailScreen: NavigationFunctionComponent<DetailScreenProps> = (props) => 
 DetailScreen.options = {
   topBar: {
     title: {
-      text: 'Cats List',
       color: '#CED46A',
+      fontFamily: 'OpenSans-Bold',
+      fontSize: 20,
     },
     background: {
       color: '#07553B',
     },
     backButton: {
-      title: 'Back',
+      title: 'Назад',
       color: '#CED46A',
+      fontFamily: 'OpenSans-Regular',
     },
   },
 };
@@ -60,12 +62,16 @@ const styles = StyleSheet.create({
   textItem: {
     marginVertical: 10,
     color: '#07553B',
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 18,
   },
   itemDesc: {
     width: '100%',
     padding: 15,
     textAlign: 'center',
     color: '#07553B',
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 16,
   },
 });
 

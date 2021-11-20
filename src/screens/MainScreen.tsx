@@ -38,8 +38,9 @@ const MainScreen: NavigationFunctionComponent = (props) => {
 MainScreen.options = {
   topBar: {
     title: {
-      text: 'Cats List',
+      text: 'Список котов',
       color: '#CED46A',
+      fontFamily: 'OpenSans-Bold',
     },
     background: {
       color: '#07553B',

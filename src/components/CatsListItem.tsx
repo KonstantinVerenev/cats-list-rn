@@ -32,8 +32,12 @@ const CatsListItem: React.FC<ListItemProps> = (props) => {
           });
         }}>
         <View style={styles.itemHeader}>
-          <Text style={styles.headerText}>{props.item.name}</Text>
-          <Text style={styles.headerText}>{props.item.breed}</Text>
+          <Text style={{ ...styles.headerText, ...{ fontFamily: 'OpenSans-Bold' } }}>
+            {props.item.name}
+          </Text>
+          <Text style={{ ...styles.headerText, ...{ fontFamily: 'OpenSans-Regular' } }}>
+            {props.item.breed}
+          </Text>
         </View>
         <Image
           style={styles.catImage}
@@ -71,12 +75,15 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: '#CED46A',
+    fontSize: 18,
   },
   itemDesc: {
     width: '100%',
     padding: 15,
     textAlign: 'center',
     color: '#CED46A',
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 16,
   },
   catImage: {
     width: '90%',
