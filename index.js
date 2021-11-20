@@ -1,5 +1,4 @@
 import { Navigation } from "react-native-navigation";
-// import App from './App';
 import MainScreen from './src/screens/MainScreen';
 import DetailScreen from './src/screens/DetailScreen';
 
@@ -21,15 +20,3 @@ Navigation.events().registerAppLaunchedListener(async () => {
     }
   });
 });
-
-MainScreen.options = {
-  topBar: {
-    title: {
-      text: 'Cats List',
-      color: 'white'
-    },
-    background: {
-      color: 'tomato'
-    }
-  }
-};

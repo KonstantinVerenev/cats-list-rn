@@ -1,14 +1,12 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
-import DetailScreen from './src/screens/DetailScreen';
+import { View } from 'react-native';
 import MainScreen from './src/screens/MainScreen';
 
 const App: React.FC = () => {
   return (
-    <SafeAreaView>
+    <View>
       <MainScreen />
-      {/* <DetailScreen /> */}
-    </SafeAreaView>
+    </View>
   );
 };
 

@@ -20,11 +20,15 @@ const SearchInput: React.FC<SearchInputType> = (props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    height: '100%',
+  },
   inputField: {
+    height: '100%',
     padding: 5,
     textAlign: 'center',
     borderWidth: 1,
+    borderColor: 'lightgrey',
   },
 });
 

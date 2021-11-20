@@ -9,8 +9,6 @@ type ListItemProps = {
   componentId: string;
 };
 
-// Navigation.registerComponent('DetailScreen', () => DetailScreen);
-
 const CatsListItem: React.FC<ListItemProps> = (props) => {
   return (
     <View style={styles.itemContainer}>
@@ -34,8 +32,8 @@ const CatsListItem: React.FC<ListItemProps> = (props) => {
           });
         }}>
         <View style={styles.itemHeader}>
-          <Text>{props.item.name}</Text>
-          <Text>{props.item.breed}</Text>
+          <Text style={styles.headerText}>{props.item.name}</Text>
+          <Text style={styles.headerText}>{props.item.breed}</Text>
         </View>
         <Image
           style={styles.catImage}
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 10,
     alignItems: 'center',
-    backgroundColor: 'tomato',
+    backgroundColor: '#07553B',
     shadowColor: 'black',
     shadowOpacity: 0.4,
     shadowOffset: { width: 0, height: 0 },
@@ -71,10 +69,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  headerText: {
+    color: '#CED46A',
+  },
   itemDesc: {
     width: '100%',
     padding: 15,
     textAlign: 'center',
+    color: '#CED46A',
   },
   catImage: {
     width: '90%',
