@@ -5,11 +5,12 @@ import CatsListItem from './CatsListItem';
 
 type CatsListType = {
   catsData: Array<CatType>;
+  componentId: string;
 };
 
 const CatsList: React.FC<CatsListType> = (props) => {
   const renderItem: ListRenderItem<CatType> = ({ item }) => {
-    return <CatsListItem item={item} />;
+    return <CatsListItem item={item} componentId={props.componentId} />;
   };
 
   return (

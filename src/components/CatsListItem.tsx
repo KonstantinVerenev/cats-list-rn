@@ -1,27 +1,50 @@
 import React from 'react';
 import { CatType } from '../data/CatsData';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import DetailScreen from '../screens/DetailScreen';
 
 type ListItemProps = {
   item: CatType;
+  componentId: string;
 };
 
-const CatsListItem: React.FC<ListItemProps> = ({ item }) => {
+// Navigation.registerComponent('DetailScreen', () => DetailScreen);
+
+const CatsListItem: React.FC<ListItemProps> = (props) => {
   return (
     <View style={styles.itemContainer}>
-      <View style={styles.cardContainer}>
+      <TouchableOpacity
+        style={styles.cardContainer}
+        onPress={() => {
+          Navigation.push(props.componentId, {
+            component: {
+              name: 'DetailScreen',
+              passProps: {
+                catId: props.item.id,
+              },
+              options: {
+                topBar: {
+                  title: {
+                    text: props.item.name,
+                  },
+                },
+              },
+            },
+          });
+        }}>
         <View style={styles.itemHeader}>
-          <Text>{item.name}</Text>
-          <Text>{item.breed}</Text>
+          <Text>{props.item.name}</Text>
+          <Text>{props.item.breed}</Text>
         </View>
         <Image
           style={styles.catImage}
           source={{
-            uri: item.img,
+            uri: props.item.img,
           }}
         />
-        <Text style={styles.itemDesc}>{item.description}</Text>
-      </View>
+        <Text style={styles.itemDesc}>{props.item.description}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

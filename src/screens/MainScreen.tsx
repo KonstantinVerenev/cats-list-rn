@@ -4,7 +4,11 @@ import CatsList from '../components/CatsList';
 import SearchInput from '../components/SearchInput';
 import { Cats, CatType } from '../data/CatsData';
 
-const MainScreen: React.FC = () => {
+type PropsType = {
+  componentId: string;
+};
+
+const MainScreen: React.FC<PropsType> = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [catsData, setCatsData] = useState<Array<CatType>>([]);
 
@@ -19,7 +23,7 @@ const MainScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.catsList}>
-        <CatsList catsData={filtredCatsData} />
+        <CatsList catsData={filtredCatsData} componentId={props.componentId} />
       </View>
       <View style={styles.searchInput}>
         <SearchInput setSearchQuery={setSearchQuery} />

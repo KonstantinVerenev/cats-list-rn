@@ -1,11 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { Cats, CatType } from '../data/CatsData';
+import { Cats } from '../data/CatsData';
 
-const DetailScreen: React.FC = () => {
-  const catId = 1;
+type DetailScreenProps = {
+  catId: number;
+};
 
-  const selectedCat = Cats.find((cat) => cat.id === catId);
+const DetailScreen: React.FC<DetailScreenProps> = ({ catId }) => {
+  const selectedCatId = catId;
+
+  const selectedCat = Cats.find((cat) => cat.id === selectedCatId);
 
   return (
     <View style={styles.itemContainer}>
@@ -26,7 +30,6 @@ const DetailScreen: React.FC = () => {
 const styles = StyleSheet.create({
   itemContainer: {
     height: '100%',
-    marginTop: 20,
     paddingHorizontal: 10,
     alignItems: 'center',
     backgroundColor: 'tomato',
