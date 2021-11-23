@@ -3,10 +3,11 @@ import { View, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform } from '
 import { Navigation, NavigationFunctionComponent } from 'react-native-navigation';
 
 import { DETAIL_SCREEN } from '../../navigation';
-import CatsList from '../components/CatsList';
-import SearchInput from '../components/SearchInput';
 import colors from '../constants/colors';
 import { Cats, CatType } from '../data/CatsData';
+
+import CatsList from '../components/CatsList';
+import SearchInput from '../components/SearchInput';
 
 const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
   const [searchQuery, setSearchQuery] = useState('');

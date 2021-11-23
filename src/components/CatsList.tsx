@@ -1,6 +1,8 @@
 import React from 'react';
 import { FlatList, View, ListRenderItem, Image, StyleSheet, Text } from 'react-native';
+
 import { CatType } from '../data/CatsData';
+
 import CatsListItem from './CatsListItem';
 
 type CatsListType = {

@@ -1,6 +1,7 @@
 import React from 'react';
-import { CatType } from '../data/CatsData';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+import { CatType } from '../data/CatsData';
 import colors from '../constants/colors';
 
 type ListItemProps = {
