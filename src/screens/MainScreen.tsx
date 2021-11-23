@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
 import { Navigation, NavigationFunctionComponent } from 'react-native-navigation';
-import { DETAIL_SCREEN } from '../../navigation';
 
+import { DETAIL_SCREEN } from '../../navigation';
 import CatsList from '../components/CatsList';
 import SearchInput from '../components/SearchInput';
 import colors from '../constants/colors';
@@ -24,7 +24,7 @@ const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
     setCatsData(filtredCatsData);
   }, [searchQuery]);
 
-  const onOpenDetailScreen = (catId: number, catName: string) => {
+  const onOpenDetailScreen = useCallback((catId: number, catName: string) => {
     Navigation.push(componentId, {
       component: {
         name: DETAIL_SCREEN,
@@ -40,7 +40,7 @@ const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
         },
       },
     });
-  };
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
