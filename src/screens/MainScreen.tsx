@@ -5,6 +5,7 @@ import { DETAIL_SCREEN } from '../../navigation';
 
 import CatsList from '../components/CatsList';
 import SearchInput from '../components/SearchInput';
+import colors from '../constants/colors';
 import { Cats, CatType } from '../data/CatsData';
 
 const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
@@ -62,11 +63,11 @@ MainScreen.options = {
   topBar: {
     title: {
       text: 'Список котов',
-      color: '#CED46A',
+      color: colors.lightGreen,
       fontFamily: 'OpenSans-Bold',
     },
     background: {
-      color: '#07553B',
+      color: colors.darkGreen,
     },
   },
 };

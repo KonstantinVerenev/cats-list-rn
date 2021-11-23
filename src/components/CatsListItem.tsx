@@ -1,8 +1,7 @@
 import React from 'react';
 import { CatType } from '../data/CatsData';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Navigation } from 'react-native-navigation';
-import DetailScreen from '../screens/DetailScreen';
+import colors from '../constants/colors';
 
 type ListItemProps = {
   item: CatType;
@@ -14,19 +13,17 @@ const CatsListItem: React.FC<ListItemProps> = ({ item, onOpenDetailScreen }) => 
     <View style={styles.itemContainer}>
       <TouchableOpacity style={styles.cardContainer} onPress={onOpenDetailScreen}>
         <View style={styles.itemHeader}>
-          <Text style={{ ...styles.headerText, ...{ fontFamily: 'OpenSans-Bold' } }}>
-            {item.name}
-          </Text>
-          <Text style={{ ...styles.headerText, ...{ fontFamily: 'OpenSans-Regular' } }}>
-            {item.breed}
-          </Text>
+          <Text style={styles.headerText}>{item.name}</Text>
+          <Text style={styles.headerText}>{item.breed}</Text>
         </View>
-        <Image
-          style={styles.catImage}
-          source={{
-            uri: item.img,
-          }}
-        />
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.catImage}
+            source={{
+              uri: item.img,
+            }}
+          />
+        </View>
         <Text style={styles.itemDesc}>{item.description}</Text>
       </TouchableOpacity>
     </View>
@@ -35,41 +32,46 @@ const CatsListItem: React.FC<ListItemProps> = ({ item, onOpenDetailScreen }) => 
 
 const styles = StyleSheet.create({
   itemContainer: {
-    alignItems: 'center',
+    flex: 1,
   },
   cardContainer: {
-    width: '95%',
+    flex: 1,
     marginTop: 20,
+    marginHorizontal: 10,
     paddingHorizontal: 10,
-    alignItems: 'center',
-    backgroundColor: '#07553B',
+    backgroundColor: colors.darkGreen,
     shadowColor: 'black',
     shadowOpacity: 0.4,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 10,
+    elevation: 4,
     borderRadius: 10,
   },
   itemHeader: {
-    width: '100%',
+    flex: 1,
     padding: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   headerText: {
-    color: '#CED46A',
+    color: colors.lightGreen,
     fontSize: 18,
+    fontFamily: 'OpenSans-Bold',
   },
-  itemDesc: {
-    width: '100%',
-    padding: 15,
-    textAlign: 'center',
-    color: '#CED46A',
-    fontFamily: 'OpenSans-Regular',
-    fontSize: 16,
+  imageContainer: {
+    flex: 1,
+    alignItems: 'center',
   },
   catImage: {
     width: '90%',
     height: 200,
+  },
+  itemDesc: {
+    padding: 15,
+    textAlign: 'center',
+    color: colors.lightGreen,
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 16,
   },
 });
 

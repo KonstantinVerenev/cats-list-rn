@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationFunctionComponent } from 'react-native-navigation';
 
+import colors from '../constants/colors';
 import { Cats } from '../data/CatsData';
 
 type DetailScreenProps = {
@@ -16,7 +17,7 @@ const DetailScreen: NavigationFunctionComponent<DetailScreenProps> = (props) => 
 
   return (
     <View style={styles.itemContainer}>
-      <LinearGradient colors={['#CED46A', '#07553B']} style={styles.linearGradient}>
+      <LinearGradient colors={[colors.lightGreen, colors.darkGreen]} style={styles.linearGradient}>
         <Image
           style={styles.catImage}
           source={{
@@ -34,16 +35,16 @@ const DetailScreen: NavigationFunctionComponent<DetailScreenProps> = (props) => 
 DetailScreen.options = {
   topBar: {
     title: {
-      color: '#CED46A',
+      color: colors.lightGreen,
       fontFamily: 'OpenSans-Bold',
       fontSize: 20,
     },
     background: {
-      color: '#07553B',
+      color: colors.darkGreen,
     },
     backButton: {
       title: 'Назад',
-      color: '#CED46A',
+      color: colors.lightGreen,
       fontFamily: 'OpenSans-Regular',
     },
   },
@@ -54,33 +55,28 @@ export default DetailScreen;
 const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
-    height: '100%',
-    backgroundColor: '#CED46A',
   },
   linearGradient: {
     flex: 1,
     alignItems: 'center',
-    width: '100%',
   },
   catImage: {
-    width: '95%',
-    height: 250,
+    width: '90%',
+    height: 230,
     marginVertical: 20,
+    borderRadius: 5,
   },
   textItem: {
     marginVertical: 10,
-    color: '#07553B',
+    color: colors.darkGreen,
     fontFamily: 'OpenSans-Regular',
     fontSize: 18,
   },
   itemDesc: {
-    width: '100%',
     padding: 15,
     textAlign: 'center',
-    color: '#07553B',
+    color: colors.darkGreen,
     fontFamily: 'OpenSans-Regular',
     fontSize: 16,
   },
 });
-
-const style = StyleSheet.create({});

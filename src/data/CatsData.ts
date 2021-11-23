@@ -19,7 +19,7 @@ export const Cats: Array<CatType> = [
   {
     id: 2,
     name: 'Пушок',
-    breed: 'Чеширская кошка',
+    breed: 'Сиамская кошка',
     age: '3 года',
     description: 'Описание: Хорошая кошка',
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Gata_Bengal%C3%AD_Hembra_Brown_Spotted.jpg/320px-Gata_Bengal%C3%AD_Hembra_Brown_Spotted.jpg',
@@ -27,7 +27,7 @@ export const Cats: Array<CatType> = [
   {
     id: 3,
     name: 'Снежок',
-    breed: 'Чеширская кошка',
+    breed: 'Другая порода',
     age: '2 года',
     description: 'Хорошая кошка',
     img: 'https://upload.wikimedia.org/wikipedia/ru/thumb/b/ba/%D0%90%D0%BA%D1%80%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BE%D1%82.jpg/320px-%D0%90%D0%BA%D1%80%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BE%D1%82.jpg',

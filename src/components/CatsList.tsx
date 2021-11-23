@@ -17,6 +17,7 @@ const CatsList: React.FC<CatsListType> = ({ catsData, onOpenDetailScreen }) => {
 
   return (
     <FlatList
+      style={styles.catsList}
       data={catsData}
       renderItem={renderItem}
       ListEmptyComponent={<Text style={styles.emptyMessage}>Котов с таким именем нет</Text>}
@@ -25,6 +26,9 @@ const CatsList: React.FC<CatsListType> = ({ catsData, onOpenDetailScreen }) => {
 };
 
 const styles = StyleSheet.create({
+  catsList: {
+    flex: 1,
+  },
   emptyMessage: {
     textAlign: 'center',
     fontSize: 18,
