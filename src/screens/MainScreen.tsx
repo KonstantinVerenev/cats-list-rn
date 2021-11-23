@@ -1,34 +1,57 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, SafeAreaView, KeyboardAvoidingView, Text } from 'react-native';
-import { NavigationFunctionComponent } from 'react-native-navigation';
+import { View, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
+import { Navigation, NavigationFunctionComponent } from 'react-native-navigation';
+import { DETAIL_SCREEN } from '../../navigation';
+
 import CatsList from '../components/CatsList';
 import SearchInput from '../components/SearchInput';
 import { Cats, CatType } from '../data/CatsData';
 
-const MainScreen: NavigationFunctionComponent = (props) => {
+const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [catsData, setCatsData] = useState<Array<CatType>>([]);
+  const [catsData, setCatsData] = useState<Array<CatType>>(Cats);
+
+  const onChangeText = (text: string) => {
+    setSearchQuery(text);
+  };
 
   useEffect(() => {
-    setCatsData(Cats);
-  }, []);
+    const filtredCatsData = Cats.filter(({ name }) =>
+      name.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
 
-  const filtredCatsData = catsData.filter((item) =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+    setCatsData(filtredCatsData);
+  }, [searchQuery]);
+
+  const onOpenDetailScreen = (catId: number, catName: string) => {
+    Navigation.push(componentId, {
+      component: {
+        name: DETAIL_SCREEN,
+        passProps: {
+          catId: catId,
+        },
+        options: {
+          topBar: {
+            title: {
+              text: catName,
+            },
+          },
+        },
+      },
+    });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'} keyboardVerticalOffset={90}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={90}>
         <View style={styles.catsList}>
-          {filtredCatsData.length < 1 ? (
-            <Text>Котов с таким именем нет</Text>
-          ) : (
-            <CatsList catsData={filtredCatsData} componentId={props.componentId} />
-          )}
+          <CatsList catsData={catsData} onOpenDetailScreen={onOpenDetailScreen} />
         </View>
         <View style={styles.searchInput}>
-          <SearchInput setSearchQuery={setSearchQuery} />
+          <SearchInput onChangeText={onChangeText} />
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -55,9 +78,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   catsList: {
-    height: '95%',
+    flex: 1,
   },
   searchInput: {
-    height: '5%',
+    height: 50,
   },
 });

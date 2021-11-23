@@ -2,18 +2,16 @@ import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
 type SearchInputType = {
-  setSearchQuery: (text: string) => void;
+  onChangeText: (text: string) => void;
 };
 
-const SearchInput: React.FC<SearchInputType> = (props) => {
+const SearchInput: React.FC<SearchInputType> = ({ onChangeText }) => {
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.inputField}
         placeholder={'Поиск по имени'}
-        onChangeText={(text) => {
-          props.setSearchQuery(text);
-        }}
+        onChangeText={onChangeText}
       />
     </View>
   );
@@ -21,12 +19,11 @@ const SearchInput: React.FC<SearchInputType> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
+    flex: 1,
   },
   inputField: {
-    height: '100%',
+    flex: 1,
     padding: 5,
-    textAlign: 'center',
     borderWidth: 1,
     borderColor: 'lightgrey',
   },

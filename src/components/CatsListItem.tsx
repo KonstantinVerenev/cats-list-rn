@@ -6,46 +6,28 @@ import DetailScreen from '../screens/DetailScreen';
 
 type ListItemProps = {
   item: CatType;
-  componentId: string;
+  onOpenDetailScreen: () => void;
 };
 
-const CatsListItem: React.FC<ListItemProps> = (props) => {
+const CatsListItem: React.FC<ListItemProps> = ({ item, onOpenDetailScreen }) => {
   return (
     <View style={styles.itemContainer}>
-      <TouchableOpacity
-        style={styles.cardContainer}
-        onPress={() => {
-          Navigation.push(props.componentId, {
-            component: {
-              name: 'DetailScreen',
-              passProps: {
-                catId: props.item.id,
-              },
-              options: {
-                topBar: {
-                  title: {
-                    text: props.item.name,
-                  },
-                },
-              },
-            },
-          });
-        }}>
+      <TouchableOpacity style={styles.cardContainer} onPress={onOpenDetailScreen}>
         <View style={styles.itemHeader}>
           <Text style={{ ...styles.headerText, ...{ fontFamily: 'OpenSans-Bold' } }}>
-            {props.item.name}
+            {item.name}
           </Text>
           <Text style={{ ...styles.headerText, ...{ fontFamily: 'OpenSans-Regular' } }}>
-            {props.item.breed}
+            {item.breed}
           </Text>
         </View>
         <Image
           style={styles.catImage}
           source={{
-            uri: props.item.img,
+            uri: item.img,
           }}
         />
-        <Text style={styles.itemDesc}>{props.item.description}</Text>
+        <Text style={styles.itemDesc}>{item.description}</Text>
       </TouchableOpacity>
     </View>
   );

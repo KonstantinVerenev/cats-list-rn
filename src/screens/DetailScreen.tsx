@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationFunctionComponent } from 'react-native-navigation';
+
 import { Cats } from '../data/CatsData';
 
 type DetailScreenProps = {
