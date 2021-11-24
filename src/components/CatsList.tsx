@@ -22,7 +22,12 @@ const CatsList: React.FC<CatsListType> = ({ catsData, onOpenDetailScreen }) => {
       style={styles.catsList}
       data={catsData}
       renderItem={renderItem}
-      ListEmptyComponent={<Text style={styles.emptyMessage}>Котов с таким именем нет</Text>}
+      contentContainerStyle={{ flexGrow: 1 }}
+      ListEmptyComponent={
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>Котов с таким именем нет</Text>
+        </View>
+      }
     />
   );
 };

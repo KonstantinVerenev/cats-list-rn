@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { CatType } from '../data/CatsData';
 import colors from '../constants/colors';
+import fonts from '../constants/fonts';
 
 type ListItemProps = {
   item: CatType;
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: colors.lightGreen,
     fontSize: 18,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fonts.mainBold,
   },
   imageContainer: {
     flex: 1,
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     padding: 15,
     textAlign: 'center',
     color: colors.lightGreen,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fonts.main,
     fontSize: 16,
   },
 });

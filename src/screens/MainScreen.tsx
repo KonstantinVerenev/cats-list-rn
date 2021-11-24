@@ -8,6 +8,7 @@ import { Cats, CatType } from '../data/CatsData';
 
 import CatsList from '../components/CatsList';
 import SearchInput from '../components/SearchInput';
+import fonts from '../constants/fonts';
 
 const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -15,33 +16,34 @@ const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
 
   const onChangeText = (text: string) => {
     setSearchQuery(text);
-  };
 
-  useEffect(() => {
     const filtredCatsData = Cats.filter(({ name }) =>
-      name.toLowerCase().includes(searchQuery.toLowerCase()),
+      name.toLowerCase().includes(text.toLowerCase()),
     );
 
     setCatsData(filtredCatsData);
-  }, [searchQuery]);
+  };
 
-  const onOpenDetailScreen = useCallback((catId: number, catName: string) => {
-    Navigation.push(componentId, {
-      component: {
-        name: DETAIL_SCREEN,
-        passProps: {
-          catId: catId,
-        },
-        options: {
-          topBar: {
-            title: {
-              text: catName,
+  const onOpenDetailScreen = useCallback(
+    (catId: number, catName: string) => {
+      Navigation.push(componentId, {
+        component: {
+          name: DETAIL_SCREEN,
+          passProps: {
+            catId: catId,
+          },
+          options: {
+            topBar: {
+              title: {
+                text: catName,
+              },
             },
           },
         },
-      },
-    });
-  }, []);
+      });
+    },
+    [componentId],
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,9 +51,9 @@ const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         keyboardVerticalOffset={90}>
-        <View style={styles.catsList}>
-          <CatsList catsData={catsData} onOpenDetailScreen={onOpenDetailScreen} />
-        </View>
+        {/* <View style={styles.catsList}> */}
+        <CatsList catsData={catsData} onOpenDetailScreen={onOpenDetailScreen} />
+        {/* </View> */}
         <View style={styles.searchInput}>
           <SearchInput onChangeText={onChangeText} />
         </View>
@@ -65,7 +67,7 @@ MainScreen.options = {
     title: {
       text: 'Список котов',
       color: colors.lightGreen,
-      fontFamily: 'OpenSans-Bold',
+      fontFamily: fonts.mainBold,
     },
     background: {
       color: colors.darkGreen,
@@ -79,9 +81,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  catsList: {
-    flex: 1,
-  },
+  // catsList: {
+  //   flex: 1,
+  // },
   searchInput: {
     height: 50,
   },
