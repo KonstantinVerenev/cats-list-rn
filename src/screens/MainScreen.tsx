@@ -3,19 +3,17 @@ import { View, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform } from '
 import { Navigation, NavigationFunctionComponent } from 'react-native-navigation';
 
 import { DETAIL_SCREEN } from '../../navigation';
-import colors from '../constants/colors';
 import { Cats, CatType } from '../data/CatsData';
 
 import CatsList from '../components/CatsList';
 import SearchInput from '../components/SearchInput';
-import fonts from '../constants/fonts';
 
 const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  // const [searchQuery, setSearchQuery] = useState('');
   const [catsData, setCatsData] = useState<Array<CatType>>(Cats);
 
   const onChangeText = (text: string) => {
-    setSearchQuery(text);
+    // setSearchQuery(text);
 
     const filtredCatsData = Cats.filter(({ name }) =>
       name.toLowerCase().includes(text.toLowerCase()),
@@ -51,9 +49,7 @@ const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         keyboardVerticalOffset={90}>
-        {/* <View style={styles.catsList}> */}
         <CatsList catsData={catsData} onOpenDetailScreen={onOpenDetailScreen} />
-        {/* </View> */}
         <View style={styles.searchInput}>
           <SearchInput onChangeText={onChangeText} />
         </View>
@@ -66,11 +62,6 @@ MainScreen.options = {
   topBar: {
     title: {
       text: 'Список котов',
-      color: colors.lightGreen,
-      fontFamily: fonts.mainBold,
-    },
-    background: {
-      color: colors.darkGreen,
     },
   },
 };
@@ -81,9 +72,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  // catsList: {
-  //   flex: 1,
-  // },
   searchInput: {
     height: 50,
   },

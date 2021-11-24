@@ -38,25 +38,7 @@ const DetailScreen: NavigationFunctionComponent<DetailScreenProps> = ({ catId })
     );
   }
 
-  return <Text>Ошибка</Text>;
-};
-
-DetailScreen.options = {
-  topBar: {
-    title: {
-      color: colors.lightGreen,
-      fontFamily: fonts.mainBold,
-      fontSize: 20,
-    },
-    background: {
-      color: colors.darkGreen,
-    },
-    backButton: {
-      title: 'Назад',
-      color: colors.lightGreen,
-      fontFamily: fonts.main,
-    },
-  },
+  return <Text>Ошибка: CatId</Text>;
 };
 
 export default DetailScreen;

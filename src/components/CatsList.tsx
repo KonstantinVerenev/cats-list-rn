@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View, ListRenderItem, Image, StyleSheet, Text } from 'react-native';
+import { FlatList, View, ListRenderItem, StyleSheet, Text } from 'react-native';
 
 import { CatType } from '../data/CatsData';
 
@@ -19,12 +19,11 @@ const CatsList: React.FC<CatsListType> = ({ catsData, onOpenDetailScreen }) => {
 
   return (
     <FlatList
-      style={styles.catsList}
       data={catsData}
       renderItem={renderItem}
-      contentContainerStyle={{ flexGrow: 1 }}
+      contentContainerStyle={styles.catsList}
       ListEmptyComponent={
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={styles.emptyMessage}>
           <Text>Котов с таким именем нет</Text>
         </View>
       }
@@ -34,12 +33,12 @@ const CatsList: React.FC<CatsListType> = ({ catsData, onOpenDetailScreen }) => {
 
 const styles = StyleSheet.create({
   catsList: {
-    flex: 1,
+    flexGrow: 1,
   },
   emptyMessage: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginTop: 10,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
