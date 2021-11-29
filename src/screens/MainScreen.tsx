@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
 import { Navigation, NavigationFunctionComponent } from 'react-native-navigation';
 
@@ -24,7 +24,7 @@ const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
 
   const onOpenDetailScreen = useCallback(
     (catId: number, catName: string) => {
-      Navigation.push(componentId, {
+      void Navigation.push(componentId, {
         component: {
           name: DETAIL_SCREEN,
           passProps: {

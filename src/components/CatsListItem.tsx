@@ -15,8 +15,18 @@ const CatsListItem: React.FC<ListItemProps> = ({ item, onOpenDetailScreen }) => 
     <View style={styles.itemContainer}>
       <TouchableOpacity style={styles.cardContainer} onPress={onOpenDetailScreen}>
         <View style={styles.itemHeader}>
-          <Text style={styles.headerText}>{item.name}</Text>
-          <Text style={styles.headerText}>{item.breed}</Text>
+          <Text
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            style={{ ...styles.headerText, ...styles.headerNameText }}>
+            {item.name}
+          </Text>
+          <Text
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            style={{ ...styles.headerText, ...styles.headerBreedText }}>
+            {item.breed}
+          </Text>
         </View>
         <View style={styles.imageContainer}>
           <Image
@@ -59,6 +69,14 @@ const styles = StyleSheet.create({
     color: colors.lightGreen,
     fontSize: 18,
     fontFamily: fonts.mainBold,
+    paddingHorizontal: 2,
+  },
+  headerNameText: {
+    flex: 1,
+  },
+  headerBreedText: {
+    flex: 2,
+    textAlign: 'right',
   },
   imageContainer: {
     flex: 1,
