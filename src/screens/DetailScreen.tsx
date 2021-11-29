@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, Image, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationFunctionComponent } from 'react-native-navigation';
 
@@ -14,39 +14,32 @@ type DetailScreenProps = {
 const DetailScreen: NavigationFunctionComponent<DetailScreenProps> = ({ catId }) => {
   const selectedCat = Cats.find((cat) => cat.id === catId);
 
-  if (selectedCat) {
-    const { img, breed, age, description } = selectedCat;
-
-    return (
-      <View style={styles.itemContainer}>
-        <LinearGradient
-          colors={[colors.lightGreen, colors.darkGreen]}
-          style={styles.linearGradient}>
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
-            <Image
-              style={styles.catImage}
-              source={{
-                uri: img,
-              }}
-            />
-            <Text style={styles.textItem}>Порода: {breed}</Text>
-            <Text style={styles.textItem}>Возраст: {age}</Text>
-            <Text style={styles.itemDesc}>{description}</Text>
-          </ScrollView>
-        </LinearGradient>
-      </View>
-    );
+  if (!selectedCat) {
+    return <Text>Произошла ошибка. Сообщите нам и мы исправим это.</Text>;
   }
 
-  return <Text>Ошибка: CatId</Text>;
+  const { img, breed, age, description } = selectedCat;
+
+  return (
+    <LinearGradient colors={[colors.lightGreen, colors.darkGreen]} style={styles.linearGradient}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <Image
+          style={styles.catImage}
+          source={{
+            uri: img,
+          }}
+        />
+        <Text style={styles.textRow}>Порода: {breed}</Text>
+        <Text style={styles.textRow}>Возраст: {age}</Text>
+        <Text style={styles.description}>{description}</Text>
+      </ScrollView>
+    </LinearGradient>
+  );
 };
 
 export default DetailScreen;
 
 const styles = StyleSheet.create({
-  itemContainer: {
-    flex: 1,
-  },
   linearGradient: {
     flex: 1,
   },
@@ -59,13 +52,13 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     borderRadius: 5,
   },
-  textItem: {
+  textRow: {
     marginVertical: 10,
     color: colors.darkGreen,
     fontFamily: fonts.main,
     fontSize: 18,
   },
-  itemDesc: {
+  description: {
     padding: 15,
     textAlign: 'center',
     color: colors.darkGreen,

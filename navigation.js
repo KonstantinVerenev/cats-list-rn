@@ -1,10 +1,10 @@
-import { Navigation } from "react-native-navigation";
+import { Navigation } from 'react-native-navigation';
 
 import MainScreen from './src/screens/MainScreen';
 import DetailScreen from './src/screens/DetailScreen';
 
-import colors from "./src/constants/colors";
-import fonts from "./src/constants/fonts";
+import colors from './src/constants/colors';
+import fonts from './src/constants/fonts';
 
 export const MAIN_SCREEN = 'MainScreen';
 export const DETAIL_SCREEN = 'DetailScreen';
@@ -12,19 +12,19 @@ export const DETAIL_SCREEN = 'DetailScreen';
 Navigation.registerComponent(MAIN_SCREEN, () => MainScreen);
 Navigation.registerComponent(DETAIL_SCREEN, () => DetailScreen);
 
-export const rootNavigation = async () => {
-  Navigation.setRoot({
+export const rootNavigation = () => {
+  void Navigation.setRoot({
     root: {
       stack: {
         children: [
           {
             component: {
-              name: MAIN_SCREEN
-            }
-          }
-        ]
-      }
-    }
+              name: MAIN_SCREEN,
+            },
+          },
+        ],
+      },
+    },
   });
 };
 
@@ -43,5 +43,5 @@ Navigation.setDefaultOptions({
     background: {
       color: colors.darkGreen,
     },
-  }
+  },
 });

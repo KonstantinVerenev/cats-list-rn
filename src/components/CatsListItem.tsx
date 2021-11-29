@@ -11,39 +11,40 @@ type ListItemProps = {
 };
 
 const CatsListItem: React.FC<ListItemProps> = ({ item, onOpenDetailScreen }) => {
+  const { name, breed, img, description } = item;
   return (
-    <View style={styles.itemContainer}>
+    <View style={styles.container}>
       <TouchableOpacity style={styles.cardContainer} onPress={onOpenDetailScreen}>
-        <View style={styles.itemHeader}>
+        <View style={styles.header}>
           <Text
             numberOfLines={1}
             ellipsizeMode="tail"
             style={{ ...styles.headerText, ...styles.headerNameText }}>
-            {item.name}
+            {name}
           </Text>
           <Text
             numberOfLines={1}
             ellipsizeMode="tail"
             style={{ ...styles.headerText, ...styles.headerBreedText }}>
-            {item.breed}
+            {breed}
           </Text>
         </View>
         <View style={styles.imageContainer}>
           <Image
             style={styles.catImage}
             source={{
-              uri: item.img,
+              uri: img,
             }}
           />
         </View>
-        <Text style={styles.itemDesc}>{item.description}</Text>
+        <Text style={styles.desc}>{description}</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  itemContainer: {
+  container: {
     flex: 1,
   },
   cardContainer: {
@@ -52,14 +53,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     paddingHorizontal: 10,
     backgroundColor: colors.darkGreen,
-    shadowColor: 'black',
+    shadowColor: colors.black,
     shadowOpacity: 0.4,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 10,
     elevation: 4,
     borderRadius: 10,
   },
-  itemHeader: {
+  header: {
     flex: 1,
     padding: 15,
     flexDirection: 'row',
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 200,
   },
-  itemDesc: {
+  desc: {
     padding: 15,
     textAlign: 'center',
     color: colors.lightGreen,

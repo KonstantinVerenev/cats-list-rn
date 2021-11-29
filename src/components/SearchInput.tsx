@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 
+import colors from '../constants/colors';
+
 type SearchInputType = {
   onChangeText: (text: string) => void;
 };
@@ -20,7 +22,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     borderWidth: 1,
-    borderColor: 'lightgrey',
+    borderColor: colors.lightGrey,
     fontSize: 16,
   },
 });

@@ -9,12 +9,9 @@ import CatsList from '../components/CatsList';
 import SearchInput from '../components/SearchInput';
 
 const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
-  // const [searchQuery, setSearchQuery] = useState('');
   const [catsData, setCatsData] = useState<Array<CatType>>(Cats);
 
   const onChangeText = (text: string) => {
-    // setSearchQuery(text);
-
     const filtredCatsData = Cats.filter(({ name }) =>
       name.toLowerCase().includes(text.toLowerCase()),
     );
@@ -28,7 +25,7 @@ const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
         component: {
           name: DETAIL_SCREEN,
           passProps: {
-            catId: catId,
+            catId,
           },
           options: {
             topBar: {
