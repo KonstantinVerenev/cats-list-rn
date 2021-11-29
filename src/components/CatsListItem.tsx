@@ -2,7 +2,6 @@ import React from 'react';
 import { CatType } from '../data/CatsData';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import DetailScreen from '../screens/DetailScreen';
 
 type ListItemProps = {
   item: CatType;
@@ -12,25 +11,7 @@ type ListItemProps = {
 const CatsListItem: React.FC<ListItemProps> = (props) => {
   return (
     <View style={styles.itemContainer}>
-      <TouchableOpacity
-        style={styles.cardContainer}
-        onPress={() => {
-          Navigation.push(props.componentId, {
-            component: {
-              name: 'DetailScreen',
-              passProps: {
-                catId: props.item.id,
-              },
-              options: {
-                topBar: {
-                  title: {
-                    text: props.item.name,
-                  },
-                },
-              },
-            },
-          });
-        }}>
+      <TouchableOpacity style={styles.cardContainer}>
         <View style={styles.itemHeader}>
           <Text style={{ ...styles.headerText, ...{ fontFamily: 'OpenSans-Bold' } }}>
             {props.item.name}
