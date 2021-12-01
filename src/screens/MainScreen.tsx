@@ -21,13 +21,13 @@ const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
     void getTopHeight();
   }, []);
 
-  const onChangeText = (text: string) => {
+  const onChangeText = useCallback((text: string) => {
     const filtredCatsData = Cats.filter(({ name }) =>
       name.toLowerCase().includes(text.toLowerCase()),
     );
 
     setCatsData(filtredCatsData);
-  };
+  }, []);
 
   const onOpenDetailScreen = useCallback(
     (catId: number, catName: string) => {

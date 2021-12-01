@@ -4,11 +4,11 @@ module.exports = {
     'node': true
   },
   'extends': [
-    "eslint:recommended",
+    'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
   'parser': '@typescript-eslint/parser',
   'parserOptions': {
@@ -42,13 +42,13 @@ module.exports = {
       'error',
       'always'
     ],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'no-empty-function': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     'react/display-name': 'off',
     'react/prop-types': 'off',
     'prettier/prettier': 'error',
-    "spaced-comment": ["error", "always", { "markers": ["/"] }]
+    'spaced-comment': ['error', 'always', { 'markers': ['/'] }]
   }
 };
