@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
 import { Navigation, NavigationFunctionComponent } from 'react-native-navigation';
 
@@ -10,6 +10,16 @@ import SearchInput from '../components/SearchInput';
 
 const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
   const [catsData, setCatsData] = useState<Array<CatType>>(Cats);
+  const [topHeight, setTopHeight] = useState(20);
+
+  useEffect(() => {
+    async function getTopHeight() {
+      const { statusBarHeight, topBarHeight } = await Navigation.constants();
+      setTopHeight(statusBarHeight + topBarHeight);
+    }
+
+    void getTopHeight();
+  }, []);
 
   const onChangeText = (text: string) => {
     const filtredCatsData = Cats.filter(({ name }) =>
@@ -45,7 +55,7 @@ const MainScreen: NavigationFunctionComponent = ({ componentId }) => {
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={90}>
+        keyboardVerticalOffset={topHeight}>
         <CatsList catsData={catsData} onOpenDetailScreen={onOpenDetailScreen} />
         <View style={styles.searchInput}>
           <SearchInput onChangeText={onChangeText} />
