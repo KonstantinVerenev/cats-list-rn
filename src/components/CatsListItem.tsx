@@ -1,74 +1,98 @@
 import React from 'react';
-import { CatType } from '../data/CatsData';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+
+import { CatType } from '../data/CatsData';
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
 
 type ListItemProps = {
   item: CatType;
-  componentId: string;
+  onOpenDetailScreen: () => void;
 };
 
-const CatsListItem: React.FC<ListItemProps> = (props) => {
+const CatsListItem: React.FC<ListItemProps> = ({ item, onOpenDetailScreen }) => {
+  const { name, breed, img, description } = item;
   return (
-    <View style={styles.itemContainer}>
-      <TouchableOpacity style={styles.cardContainer}>
-        <View style={styles.itemHeader}>
-          <Text style={{ ...styles.headerText, ...{ fontFamily: 'OpenSans-Bold' } }}>
-            {props.item.name}
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.cardContainer} onPress={onOpenDetailScreen}>
+        <View style={styles.header}>
+          <Text
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            style={{ ...styles.headerText, ...styles.headerNameText }}>
+            {name}
           </Text>
-          <Text style={{ ...styles.headerText, ...{ fontFamily: 'OpenSans-Regular' } }}>
-            {props.item.breed}
+          <Text
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            style={{ ...styles.headerText, ...styles.headerBreedText }}>
+            {breed}
           </Text>
         </View>
-        <Image
-          style={styles.catImage}
-          source={{
-            uri: props.item.img,
-          }}
-        />
-        <Text style={styles.itemDesc}>{props.item.description}</Text>
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.catImage}
+            source={{
+              uri: img,
+            }}
+          />
+        </View>
+        <Text style={styles.desc}>{description}</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  itemContainer: {
-    alignItems: 'center',
+  container: {
+    flex: 1,
   },
   cardContainer: {
-    width: '95%',
+    flex: 1,
     marginTop: 20,
+    marginHorizontal: 10,
     paddingHorizontal: 10,
-    alignItems: 'center',
-    backgroundColor: '#07553B',
-    shadowColor: 'black',
+    backgroundColor: colors.darkGreen,
+    shadowColor: colors.black,
     shadowOpacity: 0.4,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 10,
+    elevation: 4,
     borderRadius: 10,
   },
-  itemHeader: {
-    width: '100%',
+  header: {
+    flex: 1,
     padding: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   headerText: {
-    color: '#CED46A',
+    color: colors.lightGreen,
     fontSize: 18,
+    fontFamily: fonts.mainBold,
+    paddingHorizontal: 2,
   },
-  itemDesc: {
-    width: '100%',
-    padding: 15,
-    textAlign: 'center',
-    color: '#CED46A',
-    fontFamily: 'OpenSans-Regular',
-    fontSize: 16,
+  headerNameText: {
+    flex: 1,
+  },
+  headerBreedText: {
+    flex: 2,
+    textAlign: 'right',
+  },
+  imageContainer: {
+    flex: 1,
+    alignItems: 'center',
   },
   catImage: {
     width: '90%',
     height: 200,
+  },
+  desc: {
+    padding: 15,
+    textAlign: 'center',
+    color: colors.lightGreen,
+    fontFamily: fonts.main,
+    fontSize: 16,
   },
 });
 

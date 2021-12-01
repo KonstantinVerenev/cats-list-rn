@@ -1,85 +1,68 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { StyleSheet, Text, Image, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationFunctionComponent } from 'react-native-navigation';
+
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
 import { Cats } from '../data/CatsData';
 
 type DetailScreenProps = {
   catId: number;
 };
 
-const DetailScreen: NavigationFunctionComponent<DetailScreenProps> = (props) => {
-  const selectedCatId = props.catId;
+const DetailScreen: NavigationFunctionComponent<DetailScreenProps> = ({ catId }) => {
+  const selectedCat = Cats.find((cat) => cat.id === catId);
 
-  const selectedCat = Cats.find((cat) => cat.id === selectedCatId);
+  if (!selectedCat) {
+    return <Text>Произошла ошибка. Сообщите нам и мы исправим это.</Text>;
+  }
+
+  const { img, breed, age, description } = selectedCat;
 
   return (
-    <View style={styles.itemContainer}>
-      <LinearGradient colors={['#CED46A', '#07553B']} style={styles.linearGradient}>
+    <LinearGradient colors={[colors.lightGreen, colors.darkGreen]} style={styles.linearGradient}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Image
           style={styles.catImage}
           source={{
-            uri: selectedCat?.img,
+            uri: img,
           }}
         />
-        <Text style={styles.textItem}>Порода: {selectedCat?.breed}</Text>
-        <Text style={styles.textItem}>Возраст: {selectedCat?.age}</Text>
-        <Text style={styles.itemDesc}>{selectedCat?.description}</Text>
-      </LinearGradient>
-    </View>
+        <Text style={styles.textRow}>Порода: {breed}</Text>
+        <Text style={styles.textRow}>Возраст: {age}</Text>
+        <Text style={styles.description}>{description}</Text>
+      </ScrollView>
+    </LinearGradient>
   );
-};
-
-DetailScreen.options = {
-  topBar: {
-    title: {
-      color: '#CED46A',
-      fontFamily: 'OpenSans-Bold',
-      fontSize: 20,
-    },
-    background: {
-      color: '#07553B',
-    },
-    backButton: {
-      title: 'Назад',
-      color: '#CED46A',
-      fontFamily: 'OpenSans-Regular',
-    },
-  },
 };
 
 export default DetailScreen;
 
 const styles = StyleSheet.create({
-  itemContainer: {
-    flex: 1,
-    height: '100%',
-    backgroundColor: '#CED46A',
-  },
   linearGradient: {
     flex: 1,
+  },
+  scrollContainer: {
     alignItems: 'center',
-    width: '100%',
   },
   catImage: {
-    width: '95%',
-    height: 250,
+    width: '90%',
+    height: 230,
     marginVertical: 20,
+    borderRadius: 5,
   },
-  textItem: {
+  textRow: {
     marginVertical: 10,
-    color: '#07553B',
-    fontFamily: 'OpenSans-Regular',
+    color: colors.darkGreen,
+    fontFamily: fonts.main,
     fontSize: 18,
   },
-  itemDesc: {
-    width: '100%',
+  description: {
     padding: 15,
     textAlign: 'center',
-    color: '#07553B',
-    fontFamily: 'OpenSans-Regular',
+    color: colors.darkGreen,
+    fontFamily: fonts.main,
     fontSize: 16,
   },
 });
-
-const style = StyleSheet.create({});

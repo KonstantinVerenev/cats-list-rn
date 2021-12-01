@@ -1,27 +1,45 @@
 import React from 'react';
-import { FlatList, View, ListRenderItem, Image, StyleSheet } from 'react-native';
+import { FlatList, View, ListRenderItem, StyleSheet, Text } from 'react-native';
+
 import { CatType } from '../data/CatsData';
+
 import CatsListItem from './CatsListItem';
 
 type CatsListType = {
   catsData: Array<CatType>;
-  componentId: string;
+  onOpenDetailScreen: (id: number, name: string) => void;
 };
 
-const CatsList: React.FC<CatsListType> = (props) => {
+const CatsList: React.FC<CatsListType> = ({ catsData, onOpenDetailScreen }) => {
   const renderItem: ListRenderItem<CatType> = ({ item }) => {
-    return <CatsListItem item={item} componentId={props.componentId} />;
+    const onPress = () => onOpenDetailScreen(item.id, item.name);
+
+    return <CatsListItem item={item} onOpenDetailScreen={onPress} />;
   };
 
   return (
-    <View style={styles.container}>
-      <FlatList data={props.catsData} renderItem={renderItem} />
-    </View>
+    <FlatList
+      data={catsData}
+      renderItem={renderItem}
+      contentContainerStyle={styles.catsList}
+      ListEmptyComponent={
+        <View style={styles.emptyMessage}>
+          <Text>Котов с таким именем нет</Text>
+        </View>
+      }
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  catsList: {
+    flexGrow: 1,
+  },
+  emptyMessage: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default CatsList;

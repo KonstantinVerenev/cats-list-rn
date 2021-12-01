@@ -1,34 +1,29 @@
 import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
+
+import colors from '../constants/colors';
 
 type SearchInputType = {
-  setSearchQuery: (text: string) => void;
+  onChangeText: (text: string) => void;
 };
 
-const SearchInput: React.FC<SearchInputType> = (props) => {
+const SearchInput: React.FC<SearchInputType> = ({ onChangeText }) => {
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.inputField}
-        placeholder={'Поиск по имени'}
-        onChangeText={(text) => {
-          props.setSearchQuery(text);
-        }}
-      />
-    </View>
+    <TextInput
+      style={styles.inputField}
+      placeholder={'Поиск по имени'}
+      onChangeText={onChangeText}
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-  },
   inputField: {
-    height: '100%',
+    flex: 1,
     padding: 5,
-    textAlign: 'center',
     borderWidth: 1,
-    borderColor: 'lightgrey',
+    borderColor: colors.lightGrey,
+    fontSize: 16,
   },
 });
 
